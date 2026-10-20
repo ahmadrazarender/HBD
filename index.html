@@ -1,44 +1,129 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8e9df">
-  <title>Happy Birthday Hira 🎂</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #fff7f1;
-      color: #29205e;
-      font-family: Georgia, "Times New Roman", serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header { padding: 22px 16px 10px; text-align: center; }
-    h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 500; }
-    p { margin: 8px 0 18px; color: #6d5686; }
-    main { width: min(1200px, 100%); padding: 0 12px 24px; }
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 12px 40px rgba(69, 39, 83, .13);
-    }
-    footer { padding: 0 16px 24px; text-align: center; color: #6d5686; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hira 💖</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  font-family: Georgia, serif;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, #180c30, #54205e, #a33d72);
+}
+
+.page {
+  display: none;
+  width: min(100%, 520px);
+  padding: 35px 24px;
+  border: 1px solid #ffffff35;
+  border-radius: 26px;
+  background: #ffffff12;
+  box-shadow: 0 15px 50px #0004;
+  animation: appear .6s ease;
+}
+
+.page.active { display: block; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.emoji { font-size: 65px; margin: 15px 0; }
+
+h1 { color: #ffd5e8; font-size: 2.1rem; }
+p { font-size: 1.1rem; line-height: 1.8; }
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 14px 24px;
+  margin-top: 18px;
+  background: #ffd3e6;
+  color: #4b1948;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover { background: white; transform: scale(1.03); }
+
+#counter { margin-top: 22px; font-size: .85rem; color: #f5d8ee; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Happy Birthday, Hira! ♡</h1>
-    <p>A special birthday story, with warm wishes from Ahmad Raza.</p>
-  </header>
-  <main>
-    <img src="birthday-story.png" alt="A dreamy three-panel birthday story for Hira, with childhood dreams, a psychology graduation, and a birthday cake marked HBD Hira and 23.">
-  </main>
-  <footer>Wishing you happiness, peace, and beautiful moments ahead. ♡</footer>
+
+<section class="page active">
+  <div class="emoji">🎁</div>
+  <h1>Hey, Hira! 💗</h1>
+  <p>Someone has prepared a little surprise just for you.</p>
+  <p>Ready to open it?</p>
+  <button onclick="nextPage()">Open Your Surprise ✨</button>
+</section>
+
+<section class="page">
+  <div class="emoji">🎂</div>
+  <h1>Happy Birthday, Hira!</h1>
+  <p>Today is all about celebrating you and the wonderful person you are.</p>
+  <p>May this new chapter bring you happiness, peace, and beautiful memories.</p>
+  <button onclick="nextPage()">Turn the Page 💌</button>
+</section>
+
+<section class="page">
+  <div class="emoji">🧠💖</div>
+  <h1>To a Wonderful Psychologist</h1>
+  <p>You chose a profession that asks you to understand minds, listen with empathy, and care about people's feelings.</p>
+  <p>May you always receive the same kindness, understanding, and happiness that you bring into the lives of others.</p>
+  <button onclick="nextPage()">One Last Surprise 🌷</button>
+</section>
+
+<section class="page">
+  <div class="emoji">🌙💐</div>
+  <h1>A Wish Just for You</h1>
+  <p>May your dreams grow bigger, your worries grow smaller, and your heart always find reasons to smile.</p>
+  <p>May this year bring you success, genuine friendships, new adventures, and countless blessings.</p>
+  <h2>Happy Birthday, Hira! 🎉</h2>
+  <p>Stay wonderful. Keep shining. 💖</p>
+  <button onclick="restart()">Read Again ↻</button>
+</section>
+
+<div id="counter" style="position:fixed;bottom:12px;left:0;right:0">
+  Page 1 of 4
+</div>
+
+<script>
+let currentPage = 0;
+const pages = document.querySelectorAll(".page");
+const counter = document.getElementById("counter");
+
+function showPage(index) {
+  pages.forEach((page, i) => {
+    page.classList.toggle("active", i === index);
+  });
+  counter.textContent = `Page ${index + 1} of ${pages.length}`;
+}
+
+function nextPage() {
+  if (currentPage < pages.length - 1) {
+    currentPage++;
+    showPage(currentPage);
+  }
+}
+
+function restart() {
+  currentPage = 0;
+  showPage(currentPage);
+}
+</script>
+
 </body>
 </html>
