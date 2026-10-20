@@ -2,128 +2,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Hira 💖</title>
-<style>
-* { box-sizing: border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#241238">
+  <title>For Hira 💖</title>
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  font-family: Georgia, serif;
-  color: white;
-  text-align: center;
-  background: linear-gradient(135deg, #180c30, #54205e, #a33d72);
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.page {
-  display: none;
-  width: min(100%, 520px);
-  padding: 35px 24px;
-  border: 1px solid #ffffff35;
-  border-radius: 26px;
-  background: #ffffff12;
-  box-shadow: 0 15px 50px #0004;
-  animation: appear .6s ease;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px 16px 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, "Times New Roman", serif;
+      color: white;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, #753e83 0%, transparent 48%),
+        linear-gradient(140deg, #160c2b, #492050, #87365f);
+      overflow-x: hidden;
+    }
 
-.page.active { display: block; }
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent 100%),
+        radial-gradient(2px 2px at 70% 20%, #ffd6ec 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 75%, #fff 50%, transparent 100%),
+        radial-gradient(2px 2px at 35% 85%, #ffd6ec 50%, transparent 100%);
+      background-size: 190px 190px;
+      opacity: 0.65;
+    }
 
-@keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 540px;
+      padding: 30px 23px;
+      border: 1px solid #ffffff35;
+      border-radius: 27px;
+      background: #ffffff12;
+      box-shadow: 0 20px 65px #0005;
+      backdrop-filter: blur(12px);
+    }
 
-.emoji { font-size: 65px; margin: 15px 0; }
+    .page {
+      display: none;
+    }
 
-h1 { color: #ffd5e8; font-size: 2.1rem; }
-p { font-size: 1.1rem; line-height: 1.8; }
+    .page.active {
+      display: block;
+      animation: appear 0.55s ease both;
+    }
 
-button {
-  border: none;
-  border-radius: 30px;
-  padding: 14px 24px;
-  margin-top: 18px;
-  background: #ffd3e6;
-  color: #4b1948;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-}
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-button:hover { background: white; transform: scale(1.03); }
+    .tag {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid #ffffff30;
+      border-radius: 30px;
+      color: #ffe0ef;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+    }
 
-#counter { margin-top: 22px; font-size: .85rem; color: #f5d8ee; }
-</style>
+    h1 {
+      margin: 23px 0 14px;
+      color: #ffe0ef;
+      font-size: clamp(2rem, 7vw, 2.8rem);
+      line-height: 1.2;
+    }
+
+    h2 {
+      color: #ffdfed;
+      font-size: 1.65rem;
+    }
+
+    p {
+      color: #f8eaf7;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .emoji {
+      margin: 17px 0;
+      font-size: 62px;
+    }
+
+    .story-picture {
+      display: block;
+      width: 100%;
+      max-width: 390px;
+      max-height: 350px;
+      margin: 22px auto;
+      object-fit: contain;
+      border-radius: 18px;
+      border: 2px solid #ffffff45;
+      box-shadow: 0 10px 30px #0004;
+    }
+
+    .picture-caption {
+      margin-top: -10px;
+      color: #f6d6e9;
+      font-size: 0.9rem;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    button {
+      padding: 13px 21px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(110deg, #ffe0a8, #ffb8dc);
+      color: #492044;
+      font-size: 0.98rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px #ffb8dc45;
+    }
+
+    button:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 4px;
+    }
+
+    button.secondary {
+      background: #ffffff18;
+      border: 1px solid #ffffff45;
+      color: white;
+    }
+
+    .progress {
+      position: fixed;
+      z-index: 2;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      color: #fce4f3;
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ffffff45;
+    }
+
+    .dot.active {
+      background: #ffd0e6;
+      transform: scale(1.25);
+    }
+
+    .final-message {
+      padding: 16px;
+      border-radius: 18px;
+      background: #ffffff0c;
+    }
+
+    .heart {
+      color: #ffb8d8;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 25px 17px;
+      }
+
+      .story-picture {
+        max-height: 280px;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="stars" aria-hidden="true"></div>
 
-<section class="page active">
-  <div class="emoji">🎁</div>
-  <h1>Hey, Hira! 💗</h1>
-  <p>Someone has prepared a little surprise just for you.</p>
-  <p>Ready to open it?</p>
-  <button onclick="nextPage()">Open Your Surprise ✨</button>
-</section>
+  <main class="card">
 
-<section class="page">
-  <div class="emoji">🎂</div>
-  <h1>Happy Birthday, Hira!</h1>
-  <p>Today is all about celebrating you and the wonderful person you are.</p>
-  <p>May this new chapter bring you happiness, peace, and beautiful memories.</p>
-  <button onclick="nextPage()">Turn the Page 💌</button>
-</section>
+    <!-- PAGE 1: INTRODUCTION -->
+    <section class="page active">
+      <div class="tag">✨ A Little Surprise for You ✨</div>
 
-<section class="page">
-  <div class="emoji">🧠💖</div>
-  <h1>To a Wonderful Psychologist</h1>
-  <p>You chose a profession that asks you to understand minds, listen with empathy, and care about people's feelings.</p>
-  <p>May you always receive the same kindness, understanding, and happiness that you bring into the lives of others.</p>
-  <button onclick="nextPage()">One Last Surprise 🌷</button>
-</section>
+      <div class="emoji">🎁</div>
 
-<section class="page">
-  <div class="emoji">🌙💐</div>
-  <h1>A Wish Just for You</h1>
-  <p>May your dreams grow bigger, your worries grow smaller, and your heart always find reasons to smile.</p>
-  <p>May this year bring you success, genuine friendships, new adventures, and countless blessings.</p>
-  <h2>Happy Birthday, Hira! 🎉</h2>
-  <p>Stay wonderful. Keep shining. 💖</p>
-  <button onclick="restart()">Read Again ↻</button>
-</section>
+      <h1>Hey, Hira! 💖</h1>
 
-<div id="counter" style="position:fixed;bottom:12px;left:0;right:0">
-  Page 1 of 4
-</div>
+      <p>
+        I made something special for you.
+        It's a little birthday journey, made with care
+        and a few surprises along the way.
+      </p>
 
-<script>
-let currentPage = 0;
-const pages = document.querySelectorAll(".page");
-const counter = document.getElementById("counter");
+      <p>Are you ready to begin? 🌷</p>
 
-function showPage(index) {
-  pages.forEach((page, i) => {
-    page.classList.toggle("active", i === index);
-  });
-  counter.textContent = `Page ${index + 1} of ${pages.length}`;
-}
+      <div class="button-row">
+        <button onclick="nextPage()">
+          Open Your Surprise ✨
+        </button>
+      </div>
+    </section>
 
-function nextPage() {
-  if (currentPage < pages.length - 1) {
-    currentPage++;
-    showPage(currentPage);
-  }
-}
 
-function restart() {
-  currentPage = 0;
-  showPage(currentPage);
-}
-</script>
+    <!-- PAGE 2: YOUR UPLOADED PICTURE -->
+    <section class="page">
+      <div class="tag">📸 A Special Picture</div>
 
+      <h1>A Little Memory 💗</h1>
+
+      <p>
+        Every picture has a story.
+        Here's a little something I wanted to share with you.
+      </p>
+
+      <img
+        class="story-picture"
+        src="https://raw.githubusercontent.com/ahmadrazarender/HBD/main/birthday-story.png"
+        alt="A special birthday picture for Hira"
+        onerror="this.style.display='none'; document.getElementById('image-error').style.display='block';"
+      >
+
+      <p
+        id="image-error"
+        style="display:none; color:#ffd0d0;"
+        role="status"
+      >
+        The picture could not load. Please check that
+        birthday-story.png exists in the HBD repository.
+      </p>
+
+      <p class="picture-caption">
+        A little picture, a little happiness, and lots of love. 💐
+      </p>
+
+      <div class="button-row">
+        <button class="secondary" onclick="previousPage()">
+          ← Previous
+        </button>
+        <button onclick="nextPage()">
+          Next Page 💌
+        </button>
+      </div>
+    </section>
+
+
+    <!-- PAGE 3: BIRTHDAY WISH -->
+    <section class="page">
+      <div class="tag">🎂 Your Special Day</div>
+
+      <div class="emoji">🎂✨</div>
+
+      <h1>Happy Birthday, Hira!</h1>
+
+      <p>
+        May your life be filled with happiness, peace,
+        success, and beautiful memories.
+      </p>
+
+      <p>
+        May you always find reasons to smile, people
+        who understand you, and opportunities that
+        help you achieve your dreams. 🌸
+      </p>
+
+      <div class="button-row">
+        <button class="secondary" onclick="previousPage()">
+          ← Previous
+        </button>
+        <button onclick="nextPage()">
+          One More Surprise 🎁
+        </button>
+      </div>
+    </section>
+
+
+    <!-- PAGE 4: MESSAGE FOR A PSYCHOLOGY GRADUATE -->
+    <section class="page">
+      <div class="tag">🌷 A Wish Just for You</div>
+
+      <div class="emoji">🧠💖</div>
+
+      <h1>Keep Shining, Hira!</h1>
+
+      <p>
+        You've chosen a field that values empathy,
+        understanding, and the importance of listening.
+      </p>
+
+      <p>
+        As you continue your journey in psychology,
+        may you grow in knowledge, confidence, and
+        kindness. I hope your future brings you
+        meaningful work and countless achievements.
+      </p>
+
+      <div class="button-row">
+        <button class="secondary" onclick="previousPage()">
+          ← Previous
+        </button>
+        <button onclick="nextPage()">
+          Final Message 💕
+        </button>
+      </div>
+    </section>
+
+
+    <!-- PAGE 5: FINAL MESSAGE -->
+    <section class="page">
+      <div class="tag">💌 Made Just for You</div>
+
+      <div class="emoji">💐</div>
+
+      <h1>Happy Birthday, Hira!</h1>
+
+      <div class="final-message">
+        <p>
+          May this new year of your life bring new
+          opportunities, wonderful experiences,
+          genuine friendships, and all the happiness
+          your heart deserves.
+        </p>
+
+        <h2>Stay Happy. Stay Wonderful. 💖</h2>
+
+        <p>
+          Wishing you a beautiful birthday and an
+          even more beautiful year ahead. 🎉
+        </p>
+      </div>
+
+      <div class="button-row">
+        <button class="secondary" onclick="previousPage()">
+          ← Previous
+        </button>
+        <button onclick="restart()">
+          Start Again ↻
+        </button>
+      </div>
+    </section>
+
+    <div class="dots" id="dots" aria-label="Story progress"></div>
+
+  </main>
+
+  <div class="progress" id="progress" aria-live="polite">
+    Page 1 of 5
+  </div>
+
+  <script>
+    const pages = Array.from(document.querySelectorAll(".page"));
+    const dotsContainer = document.getElementById("dots");
+    const progress = document.getElementById("progress");
+
+    let currentPage = 0;
+
+    // Create one progress dot per page.
+    pages.forEach((page, index) => {
+      const dot = document.createElement("span");
+      dot.className = "dot" + (index === 0 ? " active" : "");
+      dot.setAttribute("aria-hidden", "true");
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function showPage(index) {
+      currentPage = Math.max(0, Math.min(index, pages.length - 1));
+
+      pages.forEach((page, i) => {
+        page.classList.toggle("active", i === currentPage);
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentPage);
+      });
+
+      progress.textContent =
+        `Page ${currentPage + 1} of ${pages.length}`;
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+
+    function restart() {
+      showPage(0);
+    }
+  </script>
 </body>
 </html>
